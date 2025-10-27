@@ -2,6 +2,7 @@ from flask import Flask
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 import os
 
 load_dotenv()
@@ -17,6 +18,7 @@ def create_app():
 
     flask_app.config['MONGO_URI'] = os.getenv('MONGO_URI')
     flask_app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+    CORS(flask_app, origins=["*"])
 
 
     @flask_app.route('/')
